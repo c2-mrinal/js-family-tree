@@ -1,12 +1,12 @@
 {
-  "name": "family-tree",
+  "name": "js family tree",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.ts",
   "module": "./src/index.mts",
-  "homepage": "https://www.mrinalkasyap.com",
+  "homepage": "https://www.mrinalkasyap.site",
   "repository": {
-    "url": "https://github.com/c2-mrinal/family-tree"
+    "url": "https://github.com/c2-mrinal/js-family-tree"
   },
   "scripts": {
     "build":"tsup"
