@@ -1,6 +1,4 @@
-# Family Tree
-
-<!-- ![Family Tree Library Logo](family-tree-logo.png) -->
+# JS Family Tree
 
 ## Overview
 
@@ -25,7 +23,7 @@ you can visualize family relationships and genealogical data in an intuitive and
 You can install the Family Tree via npm:
 
 ```bash
-npm install family-tree
+npm install js-family-tree
 ```
 
 <!--
