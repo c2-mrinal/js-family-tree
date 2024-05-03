@@ -2,13 +2,25 @@
   "name": "family-tree",
   "version": "1.0.0",
   "description": "",
-  "main": "y",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "./src/index.ts",
+  "module": "./src/index.mts",
+  "homepage": "https://www.mrinalkasyap.com",
+  "repository": {
+    "url": "https://github.com/c2-mrinal/family-tree"
   },
+  "scripts": {
+    "build":"tsup"
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "react",
+    "angular"
+  ],
   "author": "mrinal kasyap",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
+    "tsup": "^8.0.2",
     "typescript": "^5.4.5"
   }
 }
