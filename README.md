@@ -1,5 +1,7 @@
 # JS Family Tree
 
+Javascript library to create family hierarchy (compactable with all framework & libary).
+
 ## Overview
 
 The Family Tree is a versatile JavaScript library for creating interactive family tree structures in a hierarchical
