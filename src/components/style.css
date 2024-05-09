@@ -1,16 +1,101 @@
-ul {
-	list-style-type: none;
+/* Add your CSS styling for the family tree hierarchy here */
+.person {
+	margin-top: 5rem;
+	margin-bottom: 10px;
 }
 
-ul ul {
-	margin-left: 20px;
-}
-
-li {
+.spouse {
+	font-style: italic;
+	margin-top: 5px;
 	margin-bottom: 5px;
-	cursor: pointer;
 }
 
-li:hover {
-	background-color: #f0f0f0;
+.children {
+	margin-left: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+.card {
+	width: 200px;
+	text-align: center;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.image-container img {
+	width: 100%;
+	height: auto;
+	border-radius: 50%;
+}
+
+.name {
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.age {
+	margin-top: 5px;
+	color: #666;
+	font-size: calc(0.8rem + 0.3vw);
+}
+.expand-icon {
+	position: absolute;
+	right: 49%;
+	bottom: -25%;
+	font-size: 3rem;
+	font-weight: 900;
+}
+.person-container {
+	display: flex;
+	margin: auto;
+	position: relative;
+	justify-content: center;
+}
+.ps-contain {
+	display: flex;
+	width: auto;
+}
+.sub-container {
+	cursor: pointer;
+	margin: auto 0;
+	padding: 0 10px;
+	position: relative;
+}
+
+.sub-container::after {
+	content: "";
+	position: absolute;
+	bottom: -2rem; /* Adjust the distance of the underline from the container */
+	left: 0;
+	width: 100%;
+	height: 2px; /* Thickness of the underline */
+	background-color: #000; /* Color of the underline */
+	border-radius: 50% 0; /* Adjust the border radius to make the curve */
+}
+@media screen and (max-width: 768px) {
+	.name {
+		font-size: 4vw; /* Adjust based on your preference */
+	}
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.name {
+		font-size: 3.5vw; /* Adjust based on your preference */
+	}
+}
+
+@media screen and (min-width: 1025px) {
+	.name {
+		font-size: 2vw; /* Adjust based on your preference */
+	}
 }
