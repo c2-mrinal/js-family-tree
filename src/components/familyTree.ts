@@ -1,12 +1,11 @@
 import "./style.css";
-const Tooltip = require("./Tooltip/Tooltip.ts");
-let familyTree;
+let familyTree: any;
 interface Person {
 	name: string;
 	person: Person;
-	img?: string;
-	gender?: string;
-	dob?: Date;
+	img?: any;
+	gender: string;
+	dob: Date;
 	dod?: any;
 	spouse?: Person;
 	children?: Person[];
@@ -127,12 +126,6 @@ class FamilyTree {
 // Global function to toggle node expansion
 window.toggleNodeExpansion = (depth: number) => {
 	familyTree.toggleNodeExpansion(depth);
-};
-const tooltip = () => {
-	new Tooltip({
-		text: "This is a tooltip",
-		parentElementId: "parentElement",
-	});
 };
 
 export function createFamilyTree(data: Person): string {
