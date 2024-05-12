@@ -1,14 +1,14 @@
-declare class TreeNode {
-    value: any;
-    children: TreeNode[];
-    constructor(value: any);
+interface Person {
+    name: string;
+    person: Person;
+    img?: any;
+    gender: string;
+    dob: Date;
+    dod?: any;
+    spouse?: Person;
+    children?: Person[];
+    expanded?: boolean;
 }
-declare class Tree {
-    root: TreeNode | null;
-    constructor();
-    addNode(parent: TreeNode | null, value: any): TreeNode;
-    render(element: HTMLElement): void;
-    private renderTree;
-}
+declare function createFamilyTree(data: Person): string;
 
-export { Tree as default };
+export { createFamilyTree as default };
