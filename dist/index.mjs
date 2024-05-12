@@ -1,55 +1,107 @@
 // src/components/familyTree.ts
-var TreeNode = class {
-  value;
-  children;
-  constructor(value) {
-    this.value = value;
-    this.children = [];
-  }
-};
-var Tree = class {
+var familyTree;
+var FamilyTree = class {
   root;
-  constructor() {
-    this.root = null;
+  constructor(data) {
+    this.root = data;
   }
-  // Method to add a node to the tree
-  addNode(parent, value) {
-    const newNode = new TreeNode(value);
-    if (parent === null) {
-      this.root = newNode;
-    } else {
-      parent.children.push(newNode);
+  // Function to toggle the expanded state of a node based on its depth
+  toggleNodeExpansion(depth) {
+    this.traverseAndToggleExpansion(this.root, depth);
+    const treeHTML = this.render();
+    const familyTreeElement = document.getElementById("familyTree");
+    if (familyTreeElement)
+      familyTreeElement.innerHTML = treeHTML;
+  }
+  traverseAndToggleExpansion(person, depth) {
+    if (depth === 0) {
+      person.expanded = !person.expanded;
+      return;
     }
-    return newNode;
+    if (person.children) {
+      for (const child of person.children) {
+        this.traverseAndToggleExpansion(child, depth - 1);
+      }
+    }
   }
-  // Method to render the tree as HTML
-  render(element) {
-    if (!this.root)
-      return;
-    const ul = document.createElement("ul");
-    const li = document.createElement("li");
-    li.textContent = this.root.value;
-    ul.appendChild(li);
-    this.renderTree(this.root, li);
-    element.appendChild(ul);
+  card = (name, img, gender, dob, dod) => {
+    const date = /* @__PURE__ */ new Date(), dobDate = new Date(dob), bYr = dobDate.getFullYear(), dodDate = new Date(dod);
+    let dYr = dodDate.getFullYear();
+    let age = dYr - bYr;
+    if (dod === "till") {
+      dYr = "Present";
+      age = date.getFullYear() - bYr;
+    }
+    let genIcon = "?";
+    switch (gender.toLowerCase()) {
+      case "male":
+        genIcon = "&#9794";
+        break;
+      case "female":
+        genIcon = "&#9792";
+        break;
+      default:
+        break;
+    }
+    console.log(genIcon);
+    return ` 
+		<div class="card">
+		<div class="gender"> ${genIcon}</div>
+			<div class="image-container">
+				<img src="${img ? img : "https://www.svgrepo.com/show/483912/person.svg"}" alt="Profile Image">
+			</div>
+			<div class="name">${name}</div>
+			<div class="age"> <span><b>${bYr} - ${dYr}</b> </span><span> (${age || 0} yrs)</span> </div>
+    	</div>`;
+  };
+  // Recursive function to render the family tree structure as HTML
+  renderNode(person, depth = 0) {
+    const margin = depth * 20;
+    const expandIcon = person.expanded ? "&#94;" : "&#8964;";
+    const childrenStyle = person.expanded ? "" : "display: none;";
+    const isChild = person.children?.length;
+    const childrenHTML = person.children?.map((child) => this.renderNode(child, depth + 1)).join("");
+    const detail = person?.person;
+    const spouse = person?.spouse;
+    return `
+            <div class="person" style="margin-left: ${margin}px;">
+                <div class="person-container" >
+                    <div class="ps-contain">
+                        <div class="sub-container" onclick="toggleNodeExpansion(${depth})">
+                            ${detail && this.card(detail.name, detail.img, detail.gender, detail.dob, detail.dod)}
+                        </div>
+                <span class="expand-icon ${person.expanded ? "expand-icon-open" : ""} ">${isChild ? expandIcon : ""}</span>
+			${spouse ? `<div class="sub-container" onclick="toggleNodeExpansion(${depth})"> ${this.card(
+      spouse.name,
+      spouse.img,
+      spouse.gender,
+      spouse.dob,
+      spouse.dod
+    )} </div>` : ""}
+                        
+                    </div>
+                </div>
+                <div class="children" style="${childrenStyle}">
+                    ${isChild && childrenHTML}
+                </div>
+            </div>
+        `;
   }
-  // Helper method to render the tree recursively
-  renderTree(node, parentElement) {
-    if (node.children.length === 0)
-      return;
-    const ul = document.createElement("ul");
-    node.children.forEach((child) => {
-      const li = document.createElement("li");
-      li.textContent = child.value;
-      ul.appendChild(li);
-      this.renderTree(child, li);
-    });
-    parentElement.appendChild(ul);
+  // Function to call the recursive render function and return the complete HTML
+  render() {
+    return this.renderNode(this.root);
   }
 };
+window.toggleNodeExpansion = (depth) => {
+  familyTree.toggleNodeExpansion(depth);
+};
+function createFamilyTree(data) {
+  familyTree = new FamilyTree(data);
+  return familyTree.render();
+}
 
 // src/index.ts
-var src_default = Tree;
+var src_default = createFamilyTree;
 export {
   src_default as default
 };

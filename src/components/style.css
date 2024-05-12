@@ -47,6 +47,15 @@
 	margin-top: 5px;
 	color: #666;
 	font-size: calc(0.8rem + 0.3vw);
+	display: flex;
+	justify-content: space-between;
+}
+.gender {
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	font-size: larger;
+	font-weight: 900;
 }
 .expand-icon {
 	position: absolute;
@@ -55,6 +64,11 @@
 	font-size: 3rem;
 	font-weight: 900;
 }
+.expand-icon-open {
+	bottom: -32%;
+	color: #848484;
+}
+
 .person-container {
 	display: flex;
 	margin: auto;
