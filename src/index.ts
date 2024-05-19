@@ -1,3 +1,3 @@
-import { createFamilyTree } from "./components/familyTree";
+import { FamilyTree } from './components/FamilyTree'
 
-export default createFamilyTree;
+export { FamilyTree }
