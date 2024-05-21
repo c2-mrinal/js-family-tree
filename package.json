@@ -1,6 +1,6 @@
 {
   "name": "js-family-tree",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A JavaScript library for visualizing and managing family trees using modern web technologies.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
