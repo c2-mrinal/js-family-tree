@@ -28,48 +28,69 @@ You can install the Family Tree via npm:
 npm install js-family-tree
 ```
 
-<!--
-## Usage
+## Data Passing Format
 
-```typescript
-import FamilyTree from 'family-tree';
+To use the js-family-tree library, you need to pass the family tree data in JSON format. Below is the structure of the JSON data and an example of how to integrate it with your library.
 
-// Create a new instance of the FamilyTree
-const familyTree = new FamilyTree();
+## JSON Data Structure
 
-// Add nodes to the tree
-familyTree.addNode(null, 'Grandparent');
-const parent = familyTree.addNode(familyTree.root, 'Parent');
-familyTree.addNode(parent, 'Child');
-
-// Render the tree
-const treeContainer = document.getElementById('tree-container');
-familyTree.render(treeContainer);
-```
-
-## Example
+The JSON data should represent the family tree with nodes and relationships. Each person in the family tree is a node with specific attributes. Here's a sample structure:
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Tree Example</title>
-    <link rel="stylesheet" href="family-tree.css">
-</head>
-<body>
-    <div id="tree-container"></div>
+{ person: { name: "Father", gender: "Male", dob: "09/10/1998", dod: "till", img:
+"https://yoururlofimage" }, spouse: { name: "Mother", gender: "Female", dob:
+"09/10/1999", dod: "till", img: "https://yoururlofimage" }, children: [ {
+person: { name: "Son", gender: "Male", dob: "", dod: "till", img:
+"https://yoururlofimage" }, children: [ { person: { name: "Daughter", gender:
+"Female", dob: "", dod: "till", img: "https://yoururlofimage" }, spouse: { name:
+"Son-in-Law", gender: "Male", dob: "", dod: "till", img:
+"https://yoururlofimage" }, children: [ { person: { name: "Him", gender: "Male",
+dob: "", dod: "till", img: "https://yoururlofimage" }, spouse: { name: "Her",
+gender: "female", dob: "", dod: "till", img: "https://yoururlofimage" },
+children: [], }, { person: { name: "Him", gender: "Male", dob: "", dod: "till",
+img: "path" }, spouse: { name: "Her", gender: "Female", dob: "", dod: "till",
+img: "path" }, children: [], }, ], }, ], };
+```
 
-    <script src="family-tree-library.js"></script>
-    <script>
-        const familyTree = new FamilyTree();
-        // Add nodes and render the tree
-        // (Code example similar to Usage section)
-    </script>
-</body>
-</html>
-``` -->
+### Description of JSON Fields
+
+- `id`: A unique identifier for each person in the family tree.
+- `name`: The name of the person.
+- `gender`: The gender of the person. It can be `"male"` or `"female"`.
+- `spouse`: An object representing the person's spouse (if any), with similar attributes (`id`, `name`, `gender`).
+- `children`: An array of objects representing the person's children, each with similar attributes (`id`, `name`, `gender`).
+
+## Usage
+
+- #### Import and use in a React/Next component: [example](https://stackblitz.com/edit/vitejs-vite-q6ko27?file=README.md)
+
+```html
+import { FamilyTree } from "js-family-tree"; const sampleData = {}; function
+Dummy() { useEffect(() => { const familyTreeHtml = new FamilyTree(sampleData);
+const familyTreeElement = document.getElementById("familyTree"); if
+(familyTreeElement) familyTreeElement.innerHTML = familyTreeHtml.render(); },
+[]); return (
+<div>
+  <div id="familyTree"></div>
+</div>
+); }
+```
+
+- #### Import and use in a Vanilla Javascript/Typescript component: [example](https://stackblitz.com/edit/vitejs-vite-rs3wja?file=main.js,index.html&terminal=dev)
+
+_html file_
+
+```html
+<div id="familyTreeContainer"></div>
+```
+
+_js file_
+
+```html
+document.addEventListener('DOMContentLoaded', () => { const familyTree = new
+FamilyTree({your data as object});
+familyTree.render(document.getElementById('familyTreeContainer') ); });
+```
 
 ## Documentation
 

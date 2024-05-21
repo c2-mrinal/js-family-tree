@@ -1,7 +1,7 @@
 {
   "name": "js-family-tree",
-  "version": "1.0.7",
-  "description": "",
+  "version": "1.1.0",
+  "description": "A JavaScript library for visualizing and managing family trees using modern web technologies.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "umd:main": "dist/umd/index.js",
@@ -20,7 +20,7 @@
     "test": "jest --no-cache --runInBand",
     "test:cov": "jest --coverage --no-cache --runInBand",
     "addscope": "node tools/packagejson name @tomchen/example-typescript-package",
-    "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css dist/"
+    "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css dist/cjs && copyfiles -u 1 src/**/*.html src/**/*.css dist/esm"
   },
   "publishConfig": {
     "access": "public"
